@@ -2,7 +2,7 @@ import { Box, Flex, Heading, Text, Button, SimpleGrid } from "@chakra-ui/react";
 import { ArrowLeft, Zap, Shield, TrendingUp, Pointer } from "lucide-react";
 import { motion } from "framer-motion";
 
-import HeroImage from "../image/HeroImage.jpg";
+import HeroImage from "../image/HeroSection.jpg";
 
 const MotionBox = motion(Box);
 
@@ -86,7 +86,7 @@ export default function HeroSection() {
           content: '""',
           position: "absolute",
           inset: 0,
-          bgGradient: "linear(to-br, blackAlpha.700, blue.800)",
+          bgGradient: "linear(to-br, blackAlpha.700, blue.900)",
         }}
       />
 

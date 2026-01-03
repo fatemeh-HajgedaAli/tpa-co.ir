@@ -34,7 +34,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // رنگ و سایه Glass
   const bgGlass = useColorModeValue(
     "rgba(255,255,255,0.15)",
     "rgba(0,0,0,0.25)"
@@ -67,22 +66,22 @@ export default function Navbar() {
               p={2}
               rounded="full"
               transition="all 0.3s"
-              _hover={{
-                transform: "rotate(-10deg) scale(1.15)",
-                boxShadow: "0 10px 25px rgba(59,130,246,0.5)",
-              }}
+              // _hover={{
+              //   transform: "rotate(-10deg) scale(1.15)",
+              //   boxShadow: "0 10px 25px rgba(59,130,246,0.5)",
+              // }}
             >
               <Image
                 src="/لوگو.png"
                 alt="لوگو تجارت پرگاس آینده"
-                boxSize="44px"
+                boxSize="50px"
                 objectFit="cover"
               />
             </Box>
             <Text
               fontSize="xl"
               fontWeight="black"
-              bgGradient="linear(to-r, blue.400, cyan.400)"
+              bgGradient="linear(to-r, #ffff, blue.400)"
               bgClip="text"
               transition="all 0.3s"
             >
@@ -187,8 +186,8 @@ export default function Navbar() {
                 rounded="full"
                 mt={2}
                 _hover={{
-                  transform: "scale(1.1) rotate(-1deg)",
-                  boxShadow: "0 8px 25px rgba(59,130,246,0.6)",
+                  // transform: "scale(1.1) rotate(-1deg)",
+                  boxShadow: "0 8px 12px rgba(26, 42, 67, 0.6)",
                 }}
                 transition="all 0.3s"
               >
