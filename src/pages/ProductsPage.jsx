@@ -239,8 +239,7 @@ export default function ProductsPage() {
             </Text>
           </Box>
 
-          {/*   // search part
-           */}
+          {/*  search part*/}
           <InputGroup maxW={{ md: "300px" }}>
             <InputLeftElement pointerEvents="none">
               <Icon as={Search} color="gray.500" />

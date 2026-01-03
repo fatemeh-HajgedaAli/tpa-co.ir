@@ -55,24 +55,32 @@ export default function AboutSection() {
     <Box
       as="section"
       id="about"
-      py={{ base: 16, md: 28 }}
-      bg="#0a0f18"
+      py={{ base: 17, md: 28 }}
+      bg="#132444ff"
       position="relative"
       overflow="hidden"
       dir="rtl"
     >
-      {/* BACKGROUND DECORATION */}
+      {/* BACKGROUND DECORATION  */}
       <Box
         position="absolute"
         inset={0}
-        opacity={0.07}
         pointerEvents="none"
+        opacity={{ base: 0.15, md: 0.15 }}
         style={{
-          backgroundImage:
-            "radial-gradient(circle, #3182ce 1px, transparent 1px)",
-          backgroundSize: "45px 45px",
+          backgroundImage: `
+      radial-gradient(circle at center, rgba(0, 125, 241, 0.6) 1px, transparent 1px),
+      radial-gradient(circle at center, rgba(255,255,255,0.06) 1px, transparent 1px)
+    `,
+          backgroundSize: "52px 52px, 26px 26px",
+          backgroundPosition: "0 0, 13px 13px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 42%, transparent 82%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at center, black 42%, transparent 82%)",
         }}
       />
+
       <Box
         position="absolute"
         top="-10%"
@@ -91,7 +99,6 @@ export default function AboutSection() {
           spacing={{ base: 12, lg: 20 }}
           alignItems="center"
         >
-          {/* RIGHT SIDE: CONTENT & FEATURES */}
           <Box>
             <MotionBox
               initial={{ opacity: 0, x: 40 }}
@@ -121,7 +128,7 @@ export default function AboutSection() {
               <Text
                 color="gray.400"
                 fontSize="lg"
-                mb={10}
+                mb={{ base: 10, lg: 0 }}
                 textAlign="justify"
                 lineHeight="1.8"
               >
@@ -135,46 +142,8 @@ export default function AboutSection() {
                 نفت، گاز و پتروشیمی و سایر صنایع می باشد.{" "}
               </Text>
             </MotionBox>
-
-            {/* FEATURES GRID WITH STAGGER ANIMATION */}
-            <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={5}>
-              {features.map((feature, index) => (
-                <MotionBox
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                  p={5}
-                  bg="whiteAlpha.50"
-                  borderRadius="2xl"
-                  border="1px solid"
-                  borderColor="whiteAlpha.100"
-                  _hover={{ borderColor: "blue.500", bg: "whiteAlpha.100" }}
-                  role="group"
-                >
-                  <Icon
-                    as={feature.icon}
-                    color="blue.400"
-                    w={7}
-                    h={7}
-                    mb={3}
-                    _groupHover={{ color: "blue.300", transform: "scale(1.1)" }}
-                    transition="0.3s"
-                  />
-                  <Text color="white" fontWeight="bold" fontSize="md" mb={2}>
-                    {feature.title}
-                  </Text>
-                  <Text color="gray.500" fontSize="xs" lineHeight="1.6">
-                    {feature.description}
-                  </Text>
-                </MotionBox>
-              ))}
-            </SimpleGrid>
           </Box>
 
-          {/* LEFT SIDE: ANIMATED IMAGE GRID */}
           <MotionBox
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -185,9 +154,6 @@ export default function AboutSection() {
             <SimpleGrid columns={2} spacing={4}>
               <VStack spacing={4}>
                 <MotionBox
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
                   whileHover={{ scale: 1.03 }}
                   borderRadius="3xl"
                   overflow="hidden"
@@ -204,9 +170,6 @@ export default function AboutSection() {
                   />
                 </MotionBox>
                 <MotionBox
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
                   whileHover={{ scale: 1.03 }}
                   borderRadius="3xl"
                   overflow="hidden"
@@ -223,12 +186,8 @@ export default function AboutSection() {
                   />
                 </MotionBox>
               </VStack>
-
               <VStack spacing={4} pt={10}>
                 <MotionBox
-                  initial={{ y: -30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
                   whileHover={{ scale: 1.03 }}
                   borderRadius="3xl"
                   overflow="hidden"
@@ -245,9 +204,6 @@ export default function AboutSection() {
                   />
                 </MotionBox>
                 <MotionBox
-                  initial={{ y: -30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
                   whileHover={{ scale: 1.03 }}
                   borderRadius="3xl"
                   overflow="hidden"
@@ -265,32 +221,43 @@ export default function AboutSection() {
                 </MotionBox>
               </VStack>
             </SimpleGrid>
+          </MotionBox>
+        </SimpleGrid>
 
-            {/* FLOATING BADGE */}
+        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={5} mt={12}>
+          {features.map((feature, index) => (
             <MotionBox
-              animate={{ y: [0, -12, 0] }}
-              //   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              position="absolute"
-              top="1"
-              left="1"
-              bg="blue.600"
-              color="white"
-              p={6}
-              borderRadius="100%"
-              boxShadow="0 20px 40px rgba(85, 154, 218, 0.31)"
-              zIndex={10}
-              textAlign="center"
-              border="2px solid"
-              borderColor="blue.300"
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              p={5}
+              bg="whiteAlpha.50"
+              borderRadius="2xl"
+              border="1px solid"
+              borderColor="whiteAlpha.100"
+              _hover={{ borderColor: "blue.500", bg: "whiteAlpha.100" }}
+              role="group"
             >
-              <Text fontSize="2xl" fontWeight="800" lineHeight="1">
-                +۱۵ سال
+              <Icon
+                as={feature.icon}
+                color="blue.400"
+                w={7}
+                h={7}
+                mb={3}
+                transition="0.3s"
+                _groupHover={{ color: "blue.300", transform: "scale(1.1)" }}
+              />
+              <Text color="white" fontWeight="bold" fontSize="md" mb={2}>
+                {feature.title}
               </Text>
-              <Text fontSize="xs" fontWeight="light" whiteSpace="nowrap">
-                تجربه درخشان
+              <Text color="gray.500" fontSize="xs" lineHeight="1.6">
+                {feature.description}
               </Text>
             </MotionBox>
-          </MotionBox>
+          ))}
         </SimpleGrid>
       </Container>
     </Box>

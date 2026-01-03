@@ -87,6 +87,7 @@ export default function ProductsSection() {
       <Container maxW="7xl" position="relative">
         {/* Section Header */}
         <MotionBox
+         
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -105,9 +106,10 @@ export default function ProductsSection() {
             محصولات ما
           </Badge>
           <Heading
+         fontFamily="Vazirmatn"
+           fontWeight="800"
             color="white"
             fontSize={{ base: "3xl", md: "5xl" }}
-            fontWeight="bold"
             mb={6}
           >
             محصولات{" "}

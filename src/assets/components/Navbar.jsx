@@ -78,7 +78,7 @@ export default function Navbar() {
                 objectFit="cover"
               />
             </Box>
-            <Text
+            {/* <Text
               fontSize="xl"
               fontWeight="black"
               bgGradient="linear(to-r, #ffff, blue.400)"
@@ -86,7 +86,7 @@ export default function Navbar() {
               transition="all 0.3s"
             >
               تجارت پرگاس آینده
-            </Text>
+            </Text> */}
           </HStack>
 
           {/* Desktop Menu */}

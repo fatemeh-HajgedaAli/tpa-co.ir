@@ -1,70 +1,9 @@
-import { Box, Flex, Heading, Text, Button, SimpleGrid } from "@chakra-ui/react";
-import { ArrowLeft, Zap, Shield, TrendingUp, Pointer } from "lucide-react";
+import { Box, Flex, Heading, Text, Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
-import HeroImage from "../image/HeroSection.jpg";
+import HeroImage from "../image/HeroImage3.jpg";
 
 const MotionBox = motion(Box);
-
-function StatBox({ icon: Icon, value, label, delay = 0 }) {
-  return (
-    <MotionBox
-      bg="whiteAlpha.100"
-      border="1px solid"
-      borderColor="whiteAlpha.200"
-      rounded="2xl"
-      p={6}
-      textAlign="center"
-      backdropFilter="blur(8px)"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.6, ease: "easeOut" }}
-      whileHover={{ scale: 1.05, boxShadow: "0 6px 20px rgba(235, 224, 224, 0.25)" }}
-      boxShadow="0 2px 8px rgba(0,0,0,0.1)"
-      cursor={"Pointer"}
-    >
-      <Box mb={0}>
-        <Icon size={36} color="#FFA500"  />
-      </Box>
-
-      <Heading size="xl" color="white" mb={2}>
-        {value}
-      </Heading>
-
-      <Text color="gray.300" fontWeight="medium">
-        {label}
-      </Text>
-    </MotionBox>
-  );
-}
-
-function StatsSection() {
-  const stats = [
-    { icon: Zap, value: "+20", label: "سال تجربه" },
-    { icon: Shield, value: "100%", label: "محصولات و کیفیت تضمین شده" },
-    { icon: TrendingUp, value: "+500", label: "پروژه موفق" },
-  ];
-
-  return (
-    <SimpleGrid
-      columns={{ base: 1, md: 3 }}
-      textAlign="center"
-      spacing={6}
-      mt={16}
-    >
-      {stats.map((stat, index) => (
-        <StatBox
-          key={index}
-          icon={stat.icon}
-          value={stat.value}
-          label={stat.label}
-          delay={index * 0.3}
-        />
-      ))}
-    </SimpleGrid>
-  );
-}
 
 export default function HeroSection() {
   const scrollToSection = (id) => {
@@ -72,16 +11,16 @@ export default function HeroSection() {
   };
 
   return (
-    <Box position="relative" minH="100vh" overflow="hidden">
-      {/* background */}
+    <Box position="relative" minH="auto" overflow="hidden">
+      {/* Background */}
       <Box
         position="absolute"
         inset={0}
         zIndex={0}
         bgImage={`url(${HeroImage})`}
-        bgSize="cover"
-        bgPosition="center"
-        bgRepeat={"no-repeat"}
+        bgRepeat="no-repeat"
+        bgSize={{ base: "cover", md: "cover" }}
+        bgPosition={{ base: "top center", md: "center" }}
         _before={{
           content: '""',
           position: "absolute",
@@ -90,7 +29,7 @@ export default function HeroSection() {
         }}
       />
 
-      {/* main content */}
+      {/* Main Content */}
       <Flex
         position="relative"
         zIndex={1}
@@ -100,12 +39,12 @@ export default function HeroSection() {
         textAlign="center"
         px={6}
         py={20}
-        mt={12}
+        minH="auto"
       >
         <MotionBox
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Text
             color="blue.300"
@@ -116,22 +55,34 @@ export default function HeroSection() {
             fontSize="sm"
             mb={6}
             display="inline-block"
+            fontWeight={800}
           >
             پیشرو در صنعت فولاد
           </Text>
 
-          <Heading size="3xl" color="white" mb={6}>
+          <Heading
+            size="3xl"
+            color="white"
+            mb={6}
+            fontWeight={800}
+            lineHeight="shorter"
+          >
             شرکت <br />
             <Text as="span" color="blue.300">
               تجارت پرگاس آینده
             </Text>
           </Heading>
 
-          <Text fontSize="xl" color="gray.300" maxW="3xl" mb={10}>
+          <Text
+            fontSize={{ base: "lg", md: "xl" }}
+            color="gray.300"
+            maxW="3xl"
+            mb={10}
+          >
             تولیدکننده محصولات فولادی با بیش از ۲۰ سال تجربه در صنعت ساختمان
           </Text>
 
-          <Flex gap={4} justify="center" mb={16} wrap="wrap">
+          <Flex gap={4} justify="center" wrap="wrap">
             <Button
               variant="outline"
               color="blue.300"
@@ -140,17 +91,15 @@ export default function HeroSection() {
               _hover={{
                 bg: "blue.300",
                 color: "white",
-                transform: "scale(1.05)",
-                boxShadow: "0 4px 12px rgba(255, 252, 252, 0.32)",
+                transform: "scale(1.06)",
+                boxShadow: "0 6px 18px rgba(59,130,246,0.45)",
               }}
+              transition="all 0.3s"
             >
               مشاهده محصولات
             </Button>
           </Flex>
         </MotionBox>
-
-        {/* بخش آمار */}
-        <StatsSection />
       </Flex>
     </Box>
   );
