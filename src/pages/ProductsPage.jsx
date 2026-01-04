@@ -22,7 +22,8 @@ import {
 import { ChevronLeft, CheckCircle2, Search } from "lucide-react";
 import { motion, isValidMotionProp } from "framer-motion";
 import { Link as RouterLink } from "react-router-dom";
-// image
+
+// وارد کردن تصاویر (همان مسیرهای قبلی شما)
 import productImg1 from "../assets/image/آهن اسفنجی.jpg";
 import productImg2 from "../assets/image/کک.jpg";
 import productImg3 from "../assets/image/فرو منگز.jpg";
@@ -42,10 +43,28 @@ import productImg16 from "../assets/image/نوار ابریشمی نسوز.jpg";
 import productImg17 from "../assets/image/انواع سیم.jpg";
 import productImg18 from "../assets/image/دسته لنس اکسیژن.jpg";
 
-const MotionBox = chakra(motion.div, {
+const MotionBox = chakra(motion.create("div"), {
   shouldForwardProp: (prop) =>
     isValidMotionProp(prop) || shouldForwardProp(prop),
 });
+
+// تعریف انیمیشن‌های والد برای ورود پله‌ای
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 
 export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -203,94 +222,150 @@ export default function ProductsPage() {
 
   return (
     <Box bg="gray.950" minH="100vh" py={20} dir="rtl">
-      <Container maxW="7xl">
-        <Breadcrumb
-          spacing="8px"
-          separator={<ChevronLeft size={14} color="gray" />}
-          color="gray.500"
-          mb={10}
-        >
-          <BreadcrumbItem>
-            <BreadcrumbLink as={RouterLink} to="/">
-              خانه
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink color="blue.500">محصولات</BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
+      <Container
+        maxW="7xl"
+        as={motion.create("div")}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Breadcrumb */}
+        <MotionBox variants={itemVariants} mb={10}>
+          <Breadcrumb
+            spacing="8px"
+            separator={<ChevronLeft size={14} color="gray" />}
+            color="gray.500"
+          >
+            <BreadcrumbItem>
+              <BreadcrumbLink as={RouterLink} to="/">
+                خانه
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem isCurrentPage>
+              <BreadcrumbLink color="orange.400">محصولات</BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
+        </MotionBox>
 
+        {/* Header Section */}
         <Flex
           direction={{ base: "column", md: "row" }}
           justify="space-between"
-          align={{ md: "center" }}
-          mb={12}
-          gap={6}
+          align={{ md: "flex-end" }}
+          mb={16}
+          gap={8}
         >
-          <Box>
-            <Heading color="white" fontSize="4xl" mb={5}>
-              محصولات و{" "}
-              <Text as="span" color="blue.500">
-                تجهیزات فولادی
-              </Text>
+          <MotionBox variants={itemVariants}>
+            <Heading
+              fontWeight="900"
+              color="blue.600"
+              fontSize={{ base: "4xl", md: "6xl" }}
+              lineHeight="1.2"
+              mb={4}
+            > محبوب ترین محصولات 
+              <Box
+                as="span"
+                display="block"
+                position="relative"
+                bgGradient="linear(to-r, orange.300, orange.500, yellow.400)"
+                bgClip="text"
+                sx={{
+                  WebkitTextFillColor: "transparent",
+                  animation: "shine 3s linear infinite",
+                  backgroundSize: "200% auto",
+                }}
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to-right, #F6E05E 0%, #ED8936 50%, #F6E05E 100%)",
+                }}
+              >
+                <MotionBox
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 0.8, duration: 1 }}
+                  height="4px"
+                  bg="orange.500"
+                  borderRadius="full"
+                  mt={2}
+                  boxShadow="0 0 15px rgba(237, 137, 54, 0.6)"
+                />
+              </Box>
             </Heading>
-            <Text color="gray.400">
-              تامین کامل ملزومات و مواد اولیه کارخانجات ذوب و ریخته‌گری
+            <Text color="gray.500" fontSize="lg" maxW="xl" fontWeight="500">
+              تامین کامل ملزومات و مواد اولیه زنجیره فولاد با استانداردهای
+              بین‌المللی
             </Text>
-          </Box>
+          </MotionBox>
 
-          {/*  search part*/}
-          <InputGroup maxW={{ md: "300px" }}>
-            <InputLeftElement pointerEvents="none">
-              <Icon as={Search} color="gray.500" />
-            </InputLeftElement>
-            <Input
-              placeholder="جستجوی محصول..."
-              bg="gray.900"
-              border="none"
-              color="white"
-              _focus={{ border: "1px solid", borderColor: "blue.500" }}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </InputGroup>
+          <MotionBox variants={itemVariants} w="full" maxW={{ md: "350px" }}>
+            <InputGroup size="lg">
+              <InputLeftElement pointerEvents="none">
+                <Icon as={Search} color="orange.400" />
+              </InputLeftElement>
+              <Input
+                placeholder="جستجوی در لیست متریال..."
+                bg="gray.900"
+                border="1px solid"
+                borderColor="gray.800"
+                color="white"
+                _focus={{
+                  borderColor: "orange.500",
+                  boxShadow: "0 0 10px rgba(237, 137, 54, 0.2)",
+                }}
+                borderRadius="xl"
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </InputGroup>
+          </MotionBox>
         </Flex>
 
+        {/* Products Grid */}
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
-          {filteredProducts.map((product, index) => (
+          {filteredProducts.map((product) => (
             <MotionBox
               key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
+              variants={itemVariants}
+              role="group"
               bg="gray.900"
               borderRadius="2xl"
               overflow="hidden"
               border="1px solid"
               borderColor="gray.800"
+              transition="all 0.3s"
               _hover={{
                 borderColor: "orange.500",
                 transform: "translateY(-5px)",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
               }}
             >
-              <Box h="240px" w="full" overflow="hidden" bg="gray.800">
+              <Box h="240px" w="full" overflow="hidden" position="relative">
                 <Image
                   src={product.image}
                   alt={product.name}
                   w="full"
                   h="full"
                   objectFit="cover"
-                  objectPosition="center"
                   transition="0.6s cubic-bezier(0.4, 0, 0.2, 1)"
-                  _hover={{ transform: "scale(1.1)" }}
-                  backfaceVisibility="hidden"
-                  cursor={"pointer"}
+                  _groupHover={{ transform: "scale(1.1)" }}
+                />
+                <Box
+                  position="absolute"
+                  inset="0"
+                  bgGradient="linear(to-t, gray.950, transparent)"
+                  opacity="0.6"
                 />
               </Box>
+
               <Stack p={6} spacing={4}>
-                <Heading size="md" color="white">
+                <Heading
+                  size="md"
+                  color="white"
+                  transition="0.3s"
+                  _groupHover={{ color: "orange.400" }}
+                >
                   {product.name}
                 </Heading>
-                <Text color="gray.400" fontSize="sm" noOfLines={3}>
+                <Text color="gray.400" fontSize="sm" noOfLines={3} h="60px">
                   {product.description}
                 </Text>
                 <Flex wrap="wrap" gap={2}>
@@ -300,9 +375,20 @@ export default function ProductsPage() {
                       variant="outline"
                       color="orange.200"
                       borderColor="gray.700"
-                      p={"2"}
+                      px={2}
+                      py={1}
+                      display="flex"
+                      alignItems="center"
+                      fontSize="xs"
+                      textTransform="none"
                     >
-                      <Icon as={CheckCircle2} size={10} ml={1} /> {s}
+                      <Icon
+                        as={CheckCircle2}
+                        size={10}
+                        ml={1}
+                        color="orange.500"
+                      />{" "}
+                      {s}
                     </Badge>
                   ))}
                 </Flex>
@@ -310,6 +396,14 @@ export default function ProductsPage() {
             </MotionBox>
           ))}
         </SimpleGrid>
+
+        {filteredProducts.length === 0 && (
+          <Flex direction="column" align="center" py={20}>
+            <Text color="gray.500" fontSize="xl">
+              محصولی با این مشخصات یافت نشد.
+            </Text>
+          </Flex>
+        )}
       </Container>
     </Box>
   );

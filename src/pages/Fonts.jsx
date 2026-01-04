@@ -5,30 +5,34 @@ const Fonts = () => (
     styles={`
       @font-face {
         font-family: 'Vazirmatn';
-        src: url('/fonts/Vazirmatn-Bold.ttf') format('truetype');
+        src: url('/fonts/Vazirmatn-UI-FD-ExtraLight.ttf') format('truetype');
         font-weight: 300;
         font-style: normal;
         font-display: swap;
-       
       }
       @font-face {
         font-family: 'Vazirmatn';
-        src: url('/fonts/Vazirmatn-Regular.ttf') format('truetype');
+        src: url('/fonts/Vazirmatn-UI-FD-Medium.ttf') format('truetype');
+        font-weight: 400; 
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Vazirmatn';
+        src: url('/fonts/Vazirmatn-UI-FD-Medium.ttf') format('truetype');
         font-weight: 500;
         font-style: normal;
         font-display: swap;
       }
       @font-face {
         font-family: 'Vazirmatn';
-        src: url('/fonts/Vazirmatn-Light.ttf') format('truetype');
-        font-weight: 800;
+        src: url('/fonts/Vazirmatn-UI-FD-SemiBold.ttf') format('truetype');
+        font-weight: 700;
         font-style: normal;
         font-display: swap;
-      }
-       * {
-        font-family: 'Vazirmatn', sans-serif !important;
       }
     `}
   />
 );
+
 export default Fonts;

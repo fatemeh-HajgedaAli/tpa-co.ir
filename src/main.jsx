@@ -7,9 +7,14 @@ import Fonts from "./pages/Fonts";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
+    <ChakraProvider
+      theme={theme}
+      toastOptions={{ defaultOptions: { direction: "rtl" } }}
+    >
       <Fonts />
-      <App />
+      <div dir="rtl" style={{ direction: "rtl" }}>
+        <App />
+      </div>
     </ChakraProvider>
   </React.StrictMode>
 );
