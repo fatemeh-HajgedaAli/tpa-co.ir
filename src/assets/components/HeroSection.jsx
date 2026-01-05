@@ -1,106 +1,121 @@
-import { Box, Flex, Heading, Text, Button } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  Icon,
+  SimpleGrid,
+  Container,
+  VStack,
+} from "@chakra-ui/react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Settings } from "lucide-react";
 import HeroImage from "../image/HeroImage3.jpg";
 
-const MotionBox = motion(Box);
+const MotionBox = motion.create(Box);
 
 export default function HeroSection() {
+  const { scrollYProgress } = useScroll();
+
+  const rawRotation = useTransform(scrollYProgress, [0, 1], [0, 1080]);
+  const rotate = useSpring(rawRotation, { stiffness: 100, damping: 30 });
+
+  const translateY = useTransform(scrollYProgress, [0, 1], ["0%", "80vh"]);
+
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <Box position="relative" minH="auto" overflow="hidden">
-      {/* Background */}
+    <Box position="relative" minH="100vh" dir="rtl">
+      {/* --- SCROLL-GEAR INDICATOR --- */}
+      <Box
+        position="fixed"
+        bottom="-40px"
+        left="-40px"
+        zIndex={100}
+        pointerEvents="none"
+      >
+        <motion.div style={{ rotate }}>
+          <Icon
+            as={Settings}
+            w={{ base: "150px", md: "250px" }}
+            h={{ base: "150px", md: "250px" }}
+            color="blue.500"
+            opacity="0.2"
+            filter="drop-shadow(0 0 20px rgba(49, 130, 206, 0.4))"
+          />
+        </motion.div>
+      </Box>
+      {/* ---  Hero --- */}
       <Box
         position="absolute"
         inset={0}
         zIndex={0}
         bgImage={`url(${HeroImage})`}
-        bgRepeat="no-repeat"
-        bgSize={{ base: "cover", md: "cover" }}
-        bgPosition={{ base: "top center", md: "center" }}
+        bgSize="cover"
+        bgPosition="center"
         _before={{
           content: '""',
           position: "absolute",
           inset: 0,
-          bgGradient: "linear(to-br, blackAlpha.700, blue.900)",
+          bgGradient: "linear(to-br, blackAlpha.800, blue.900)",
+          opacity: 0.85,
         }}
       />
 
-      {/* Main Content */}
-      <Flex
-        position="relative"
-        zIndex={1}
-        direction="column"
-        align="center"
-        justify="center"
-        textAlign="center"
-        px={6}
-        py={20}
-        minH="auto"
-      >
-        <MotionBox
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <Text
-            color="blue.300"
-            bg="orange.400Alpha.200"
-            px={4}
-            py={2}
-            rounded="full"
-            fontSize="sm"
-            mb={6}
-            display="inline-block"
-            fontWeight={800}
+      <Container maxW="7xl" h="full" position="relative" zIndex={1}>
+        <Flex direction="column" justify="center" minH="100vh" pt={20}>
+          <MotionBox
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            پیشرو در صنعت فولاد
-          </Text>
-
-          <Heading
-            size="3xl"
-            color="white"
-            mb={6}
-            fontWeight={800}
-            lineHeight="shorter"
-          >
-            شرکت <br />
-            <Text as="span" color="blue.300">
-              تجارت پرگاس آینده
+            <Text color="blue.300" fontWeight={800} mb={4} fontSize="sm">
+              ESTABLISHED IN 2004
             </Text>
-          </Heading>
+            <Heading size="3xl" color="white" mb={10} fontWeight={900}>
+              شرکت تجارت {""}
+              <Text as="span" color="blue.400">
+                پرگاس آینده
+              </Text>
+            </Heading>
+          </MotionBox>
 
-          <Text
-            fontSize={{ base: "lg", md: "xl" }}
-            color="gray.300"
-            maxW="3xl"
-            mb={10}
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} mb={12}>
+            <Box borderRight="4px solid" borderColor="blue.500" pr={6}>
+              <Text
+                color="white"
+                fontSize="xl"
+                fontWeight="bold"
+                lineHeight="1.8"
+              >
+                مهندسیِ تامین، فراتر از مرزها؛ <br />پیشران 
+                نوآوری در تجهیزات متالورژی و پتروشیمی.{" "}
+              </Text>
+            </Box>
+          </SimpleGrid>
+
+          <Button
+            size="lg"
+            bg="blue.600"
+            color="white"
+            w="fit-content"
+            onClick={() => scrollToSection("products")}
           >
-            تولیدکننده محصولات فولادی با بیش از ۲۰ سال تجربه در صنعت ساختمان
-          </Text>
+            مشاهده محصولات
+          </Button>
+        </Flex>
+      </Container>
 
-          <Flex gap={4} justify="center" wrap="wrap">
-            <Button
-              variant="outline"
-              color="blue.300"
-              size="lg"
-              onClick={() => scrollToSection("products")}
-              _hover={{
-                bg: "blue.300",
-                color: "white",
-                transform: "scale(1.06)",
-                boxShadow: "0 6px 18px rgba(59,130,246,0.45)",
-              }}
-              transition="all 0.3s"
-            >
-              مشاهده محصولات
-            </Button>
-          </Flex>
-        </MotionBox>
-      </Flex>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+      `,
+        }}
+      />
     </Box>
   );
 }

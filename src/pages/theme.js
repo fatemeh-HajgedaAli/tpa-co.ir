@@ -11,7 +11,7 @@ const theme = extendTheme({
         bg: "#050505",
         color: "white",
         direction: "rtl",
-        fontWeight: "500", // اضافه شد برای نمایش بهتر
+        fontWeight: "500", 
         fontVariantNumeric: "proportional-nums",
         scrollbarWidth: "thin",
         scrollbarColor: "#3182ce #050505",

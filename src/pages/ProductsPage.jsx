@@ -23,8 +23,8 @@ import { ChevronLeft, CheckCircle2, Search } from "lucide-react";
 import { motion, isValidMotionProp } from "framer-motion";
 import { Link as RouterLink } from "react-router-dom";
 
-// وارد کردن تصاویر (همان مسیرهای قبلی شما)
-import productImg1 from "../assets/image/آهن اسفنجی.jpg";
+// images
+import productImg1 from "../assets/image/آهن.jpg";
 import productImg2 from "../assets/image/کک.jpg";
 import productImg3 from "../assets/image/فرو منگز.jpg";
 import productImg4 from "../assets/image/فرو سیلیس.jpg";
@@ -48,7 +48,6 @@ const MotionBox = chakra(motion.create("div"), {
     isValidMotionProp(prop) || shouldForwardProp(prop),
 });
 
-// تعریف انیمیشن‌های والد برای ورود پله‌ای
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -242,7 +241,7 @@ export default function ProductsPage() {
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink color="orange.400">محصولات</BreadcrumbLink>
+              <BreadcrumbLink color="blue.600">محصولات</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
         </MotionBox>
@@ -262,12 +261,14 @@ export default function ProductsPage() {
               fontSize={{ base: "4xl", md: "6xl" }}
               lineHeight="1.2"
               mb={4}
-            > محبوب ترین محصولات 
+            >
+              {" "}
+              محبوب ترین محصولات
               <Box
                 as="span"
                 display="block"
                 position="relative"
-                bgGradient="linear(to-r, orange.300, orange.500, yellow.400)"
+                bgGradient="linear(to-r,blue.300, blue.500, blue.400)"
                 bgClip="text"
                 sx={{
                   WebkitTextFillColor: "transparent",
@@ -276,7 +277,7 @@ export default function ProductsPage() {
                 }}
                 style={{
                   backgroundImage:
-                    "linear-gradient(to-right, #F6E05E 0%, #ED8936 50%, #F6E05E 100%)",
+                    "linear-gradient(to-right, #5ecef6ff 0%, #8236edff 50%, #5e8cf6ff 100%)",
                 }}
               >
                 <MotionBox
@@ -284,10 +285,10 @@ export default function ProductsPage() {
                   animate={{ width: "100%" }}
                   transition={{ delay: 0.8, duration: 1 }}
                   height="4px"
-                  bg="orange.500"
+                  bg="blue.500"
                   borderRadius="full"
                   mt={2}
-                  boxShadow="0 0 15px rgba(237, 137, 54, 0.6)"
+                  boxShadow="0 0 15px rgba(54, 97, 237, 0.6)"
                 />
               </Box>
             </Heading>
@@ -310,7 +311,7 @@ export default function ProductsPage() {
                 color="white"
                 _focus={{
                   borderColor: "orange.500",
-                  boxShadow: "0 0 10px rgba(237, 137, 54, 0.2)",
+                  boxShadow: "0 0 10px rgba(54, 152, 237, 0.2)",
                 }}
                 borderRadius="xl"
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -361,7 +362,7 @@ export default function ProductsPage() {
                   size="md"
                   color="white"
                   transition="0.3s"
-                  _groupHover={{ color: "orange.400" }}
+                  _groupHover={{ color: "blue.600" }}
                 >
                   {product.name}
                 </Heading>

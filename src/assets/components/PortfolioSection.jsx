@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Factory,
   Globe,
@@ -32,6 +33,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+// ... (همان دیتای قبلی خودت بدون تغییر)
 const experienceData = [
   {
     id: "01",
@@ -179,53 +181,86 @@ const experienceData = [
   },
 ];
 
+const MotionBox = motion.create(Box);
+
 export default function IndustrialPortfolio() {
+  const { scrollYProgress } = useScroll();
+  const rotateRight = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const rotateLeft = useTransform(scrollYProgress, [0, 1], [0, -360]);
+
   return (
     <Box
       as="section"
-      py={{ base: 12, md: 24 }}
-      bg="#080808"
+      py={{ base: 16, md: 32 }}
+      bg="#090909ff"
       dir="rtl"
       position="relative"
       overflow="hidden"
     >
-      {/* Background Decor */}
+      {/* 1. Engineering Background Grid */}
       <Box
         position="absolute"
-        top="0"
-        right="0"
-        w="400px"
-        h="400px"
-        bg="blue.900"
-        opacity="0.05"
-        filter="blur(100px)"
+        inset="0"
+        opacity="0.15"
+        style={{
+          backgroundImage: `linear-gradient(#3182ce 1px, transparent 1px), linear-gradient(90deg, #3182ce 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+        }}
+        sx={{
+          maskImage: "radial-gradient(circle, black, transparent 80%)",
+        }}
       />
 
-      <Container maxW="7xl">
-        <Flex justify="space-between" align="flex-end" mb={12} px={4}>
-          <VStack align="start" spacing={3}>
+      {/* --- BACKGROUND GEARS  --- */}
+      <MotionBox
+        position="absolute"
+        top="-10%"
+        left="-5%"
+        color="blue.900"
+        opacity="0.1"
+        style={{ rotate: rotateRight }}
+      >
+        <Settings size={500} strokeWidth={1} />
+      </MotionBox>
+
+      <MotionBox
+        position="absolute"
+        bottom="-10%"
+        right="-5%"
+        color="blue.800"
+        opacity="0.1"
+        style={{ rotate: rotateLeft }}
+      >
+        <Settings size={400} strokeWidth={1} />
+      </MotionBox>
+
+      <Container maxW="7xl" position="relative" zIndex={2}>
+        <Flex justify="space-between" align="flex-end" mb={16} px={4}>
+          <VStack align="start" spacing={4}>
             <Badge
               colorScheme="blue"
-              variant="outline"
-              borderRadius="sm"
-              px={2}
+              variant="solid"
+              px={4}
+              py={1}
+              borderRadius="full"
+              letterSpacing="1px"
             >
-              PROJECTS
+              INDUSTRIAL RECORDS
             </Badge>
             <Heading
               color="white"
-              fontSize={{ base: "3xl", md: "5xl" }}
-              fontWeight="800"
+              fontSize={{ base: "3xl", md: "6xl" }}
+              fontWeight="900"
+              letterSpacing="-1px"
             >
               سوابق{" "}
               <Box as="span" color="blue.500">
                 اجرایی
               </Box>
             </Heading>
-            <Text color="gray.500">لیست کامل ۱۸ پروژه و تجربه تخصصی</Text>
           </VStack>
 
-          <HStack spacing={3} display={{ base: "none", md: "flex" }}>
+          <HStack spacing={4} display={{ base: "none", md: "flex" }}>
             <IconButton
               id="p-btn"
               icon={<ChevronRight />}
@@ -246,86 +281,100 @@ export default function IndustrialPortfolio() {
         </Flex>
 
         <Swiper
-          spaceBetween={20}
+          spaceBetween={30}
           slidesPerView={1}
-          breakpoints={{
-            768: { slidesPerView: 2 },
-          }}
+          breakpoints={{ 768: { slidesPerView: 2 } }}
           navigation={{ nextEl: "#n-btn", prevEl: "#p-btn" }}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 4000 }}
           modules={[Navigation, Pagination, Autoplay]}
           className="industrial-swiper"
         >
           {experienceData.map((item) => (
             <SwiperSlide key={item.id}>
               <Box
-                bg="rgba(20, 20, 20, 0.7)"
-                backdropFilter="blur(10px)"
+                position="relative"
+                bg="rgba(25, 25, 25, 0.7)"
+                backdropFilter="blur(15px)"
                 border="1px solid"
                 borderColor="whiteAlpha.200"
-                borderRadius="2xl"
-                p={{ base: 6, md: 8 }}
-                h={{ base: "auto", md: "280px" }}
-                position="relative"
-                transition="0.3s"
+                p={8}
+                h={{ base: "auto", md: "320px" }}
+                transition="all 0.3s"
+                role="group"
                 _hover={{
                   borderColor: "blue.500",
-                  bg: "rgba(25, 25, 25, 0.9)",
+                  transform: "translateY(-5px)",
                 }}
-                display="flex"
-                flexDirection="row"
+                clipPath="polygon(0 0, 95% 0, 100% 10%, 100% 100%, 5% 100%, 0 90%)"
               >
-                {/* بخش محتوا (سمت چپ در RTL) */}
-                <VStack align="start" spacing={4} flex="1">
+                <Box
+                  position="absolute"
+                  top="60%"
+                  left="-10px"
+                  opacity="0.05"
+                  _groupHover={{ opacity: 0.2, color: "blue.400" }}
+                  transition="0.5s"
+                >
+                  <motion.div style={{ rotate: rotateRight }}>
+                    <Settings size={100} />
+                  </motion.div>
+                </Box>
+
+                <VStack
+                  align="start"
+                  spacing={5}
+                  position="relative"
+                  zIndex={2}
+                >
                   <HStack w="full" justify="space-between">
-                    <Badge variant="subtle" colorScheme="blue" fontSize="xs">
-                      {item.year}
-                    </Badge>
-                    <Icon as={item.icon} color="whiteAlpha.400" boxSize={5} />
+                    <HStack>
+                      <Box w="12px" h="2px" bg="blue.500" />
+                      <Text
+                        color="blue.400"
+                        fontStyle="italic"
+                        fontWeight="bold"
+                        fontSize="md"
+                      >
+                        {item.year}
+                      </Text>
+                    </HStack>
+                    <Icon
+                      as={item.icon}
+                      w={6}
+                      h={6}
+                      color="whiteAlpha.500"
+                      _groupHover={{
+                        color: "blue.400",
+                        transform: "scale(1.1)",
+                      }}
+                      transition="0.3s"
+                    />
                   </HStack>
 
-                  <Heading size="md" color="white" fontWeight="700">
+                  <Heading size="md" color="white" fontWeight="800">
                     {item.title}
                   </Heading>
-
                   <Text
                     color="gray.400"
                     fontSize="sm"
-                    lineHeight="1.6"
+                    lineHeight="1.8"
                     noOfLines={3}
                   >
                     {item.desc}
                   </Text>
 
-                  <HStack mt="auto" spacing={2} color="blue.400">
-                    <Text fontSize="xs" fontWeight="bold" letterSpacing="1px">
+                  <HStack mt="auto" w="full" justify="space-between" pt={4}>
+                    <Badge
+                      variant="subtle"
+                      colorScheme="blue"
+                      fontSize="xs"
+                      px={3}
+                    >
                       {item.type}
-                    </Text>
-                    <ArrowLeft size={12} />
+                    </Badge>
+                    <ArrowLeft size={18} color="#3182ce" />
                   </HStack>
                 </VStack>
-
-                {/* بخش شاخص (سمت راست در RTL) */}
-                <Flex
-                  w="60px"
-                  direction="column"
-                  align="center"
-                  justify="center"
-                  borderRight="1px solid"
-                  borderColor="whiteAlpha.100"
-                  mr={6}
-                >
-                  <Text
-                    fontSize="4xl"
-                    fontWeight="900"
-                    color="whiteAlpha.100"
-                    sx={{ writingMode: "vertical-rl" }}
-                    transform="rotate(180deg)"
-                  >
-                    {item.id}
-                  </Text>
-                </Flex>
               </Box>
             </SwiperSlide>
           ))}
@@ -335,10 +384,10 @@ export default function IndustrialPortfolio() {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-        .industrial-swiper { padding-bottom: 60px !important; }
-        .swiper-pagination-bullet { background: #333 !important; opacity: 1; }
-        .swiper-pagination-bullet-active { background: #3182ce !important; width: 20px !important; border-radius: 4px !important; }
-      `,
+          .industrial-swiper { padding-bottom: 60px !important; }
+          .swiper-pagination-bullet { background: rgba(255,255,255,0.2) !important; opacity: 1; border-radius: 0; }
+          .swiper-pagination-bullet-active { background: #3182ce !important; width: 25px !important; transition: 0.3s; }
+        `,
         }}
       />
     </Box>

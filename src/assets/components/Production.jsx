@@ -19,7 +19,7 @@ import { CheckCircle2 } from "lucide-react";
 import { Link as RouterLink } from "react-router-dom";
 
 // images
-import Tir from "../image/شمش های فولادی.jpg";
+import Tir from "../image/شمش2.jpg";
 import navdani from "../image/navdan.jpg";
 import milgerd from "../image/milgerd.jpg";
 
@@ -28,13 +28,12 @@ const MotionBox = chakra(motion.create("div"), {
     isValidMotionProp(prop) || shouldForwardProp(prop),
 });
 
-// ۱. تعریف متغیرهای انیمیشن برای کل سکشن
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.4, // فاصله زمانی بین ورود هر بخش (Title -> Text -> Cards)
+      staggerChildren: 0.4,
     },
   },
 };
@@ -89,7 +88,7 @@ export default function ProductsSection() {
         left="25%"
         w="400px"
         h="400px"
-        bg="orange.500"
+        bg="blue.500"
         opacity="0.05"
         filter="blur(100px)"
         borderRadius="full"
@@ -114,7 +113,7 @@ export default function ProductsSection() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
-        {/* --- بخش اول: Heading (اول وارد می‌شود) --- */}
+        {/* --- : Heading --- */}
         <MotionBox variants={itemVariants} mb={6}>
           <Badge
             colorScheme="blue"
@@ -133,14 +132,14 @@ export default function ProductsSection() {
             fontSize={{ base: "5xl", md: "7xl" }}
             lineHeight="1.2"
           >
-            <Box as="span" color="blue.600">
+            <Box as="span" color="blue.900">
               مهندسی و تامین
             </Box>
             <Box
               as="span"
               display="block"
               position="relative"
-              bgGradient="linear(to-r, orange.300, orange.500, yellow.400)"
+              bgGradient="linear(to-r, blue.300, blue.500, blue.400)"
               bgClip="text"
               sx={{
                 WebkitTextFillColor: "transparent",
@@ -149,7 +148,7 @@ export default function ProductsSection() {
               }}
               style={{
                 backgroundImage:
-                  "linear-gradient(to-right, #F6E05E 0%, #ED8936 50%, #F6E05E 100%)",
+                  "linear-gradient(to-right, #5e91f6ff 0%, #3679edff 50%, #5ed5f6ff 100%)",
               }}
             >
               متریال استراتژیک فولاد
@@ -159,10 +158,10 @@ export default function ProductsSection() {
                 whileInView={{ width: "100%" }}
                 transition={{ delay: 0.5, duration: 1 }}
                 height="4px"
-                bg="orange.500"
+                bg="blue.500"
                 borderRadius="full"
                 mt={2}
-                boxShadow="0 0 15px rgba(237, 137, 54, 0.6)"
+                boxShadow="0 0 15px rgba(54, 97, 237, 0.6)"
               />
             </Box>
           </Heading>
@@ -195,7 +194,7 @@ export default function ProductsSection() {
               border="1px solid"
               borderColor="gray.800"
               _hover={{
-                borderColor: "orange.500",
+                borderColor: "blue.500",
                 boxShadow: "0 0 20px rgba(237, 137, 54, 0.1)",
               }}
             >
@@ -230,7 +229,7 @@ export default function ProductsSection() {
                 <Heading
                   size="md"
                   color="white"
-                  _groupHover={{ color: "orange.500" }}
+                  _groupHover={{ color: "blue.500" }}
                   transition="0.3s"
                   fontWeight={"700"}
                 >
@@ -269,13 +268,13 @@ export default function ProductsSection() {
             as={RouterLink}
             to="/products"
             size="lg"
-            colorScheme="orange"
+            colorScheme="blue"
             borderRadius="xl"
             px={10}
-            boxShadow="0 10px 20px -5px rgba(237, 173, 54, 0.5)"
+            boxShadow="0 10px 20px -5px rgba(54, 203, 237, 0.5)"
             _hover={{
               transform: "translateY(-2px)",
-              boxShadow: "0 15px 25px -5px rgba(237, 173, 54, 0.5)",
+              boxShadow: "0 15px 25px -5px rgba(54, 121, 237, 0.5)",
             }}
           >
             محصولات بیشتر
