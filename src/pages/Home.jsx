@@ -6,17 +6,35 @@ import ProductsSection from "../assets/components/Production";
 import PortfolioSection from "../assets/components/PortfolioSection";
 import ServicesSection from "../assets/components/ServicesSection";
 import IndustrialImageSeparator from "../assets/components/IndustrialImageSeparator";
+import { Box } from "@chakra-ui/react";
+import Footer from "../assets/components/Footer";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Navbar />
+
       <HeroSection />
-      <AboutSection />
-      <ProductsSection />
-      <ServicesSection />
+
+      <Box id="about">
+        <AboutSection />
+      </Box>
+
+      <Box id="products">
+        <ProductsSection />
+      </Box>
+
+      <Box id="services">
+        <ServicesSection />
+      </Box>
+
       <IndustrialImageSeparator />
-      <PortfolioSection />
-    </div>
+
+      <Box id="portfolio">
+        <PortfolioSection />
+      </Box>
+
+      <Footer />
+    </>
   );
 }

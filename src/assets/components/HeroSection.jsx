@@ -7,7 +7,6 @@ import {
   Icon,
   SimpleGrid,
   Container,
-  VStack,
 } from "@chakra-ui/react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Settings } from "lucide-react";
@@ -18,10 +17,11 @@ const MotionBox = motion.create(Box);
 export default function HeroSection() {
   const { scrollYProgress } = useScroll();
 
-  const rawRotation = useTransform(scrollYProgress, [0, 1], [0, 1080]);
-  const rotate = useSpring(rawRotation, { stiffness: 100, damping: 30 });
-
-  const translateY = useTransform(scrollYProgress, [0, 1], ["0%", "80vh"]);
+  /* ===== decorative rotating gear ===== */
+  const rotate = useSpring(useTransform(scrollYProgress, [0, 1], [0, 1080]), {
+    stiffness: 100,
+    damping: 30,
+  });
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -29,30 +29,29 @@ export default function HeroSection() {
 
   return (
     <Box position="relative" minH="100vh" dir="rtl">
-      {/* --- SCROLL-GEAR INDICATOR --- */}
+      {/* ===== DECORATIVE GEAR ===== */}
       <Box
         position="fixed"
         bottom="-40px"
         left="-40px"
-        zIndex={100}
+        zIndex={10}
         pointerEvents="none"
       >
         <motion.div style={{ rotate }}>
           <Icon
             as={Settings}
-            w={{ base: "150px", md: "250px" }}
-            h={{ base: "150px", md: "250px" }}
+            w={{ base: "140px", md: "240px" }}
+            h={{ base: "140px", md: "240px" }}
             color="blue.500"
-            opacity="0.2"
-            filter="drop-shadow(0 0 20px rgba(49, 130, 206, 0.4))"
+            opacity="0.15"
           />
         </motion.div>
       </Box>
-      {/* ---  Hero --- */}
+
+      {/* ===== HERO BACKGROUND ===== */}
       <Box
         position="absolute"
         inset={0}
-        zIndex={0}
         bgImage={`url(${HeroImage})`}
         bgSize="cover"
         bgPosition="center"
@@ -60,62 +59,41 @@ export default function HeroSection() {
           content: '""',
           position: "absolute",
           inset: 0,
-          bgGradient: "linear(to-br, blackAlpha.800, blue.900)",
+          bgGradient: "linear(to-br, blackAlpha.700, blue.900)",
           opacity: 0.85,
         }}
       />
 
-      <Container maxW="7xl" h="full" position="relative" zIndex={1}>
-        <Flex direction="column" justify="center" minH="100vh" pt={20}>
-          <MotionBox
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Text color="blue.300" fontWeight={800} mb={4} fontSize="sm">
-              ESTABLISHED IN 2004
+      {/* ===== CONTENT ===== */}
+      <Container maxW="7xl" position="relative" zIndex={1}>
+        <Flex direction="column" justify="center" minH="100vh" pt={24}>
+          <Heading size="3xl" color="white" mb={6}>
+            شرکت تجارت{" "}
+            <Text as="span" color="blue.400">
+              پرگاس آینده
             </Text>
-            <Heading size="3xl" color="white" mb={10} fontWeight={900}>
-              شرکت تجارت {""}
-              <Text as="span" color="blue.400">
-                پرگاس آینده
-              </Text>
-            </Heading>
-          </MotionBox>
+          </Heading>
 
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} mb={12}>
             <Box borderRight="4px solid" borderColor="blue.500" pr={6}>
-              <Text
-                color="white"
-                fontSize="xl"
-                fontWeight="bold"
-                lineHeight="1.8"
-              >
-                مهندسیِ تامین، فراتر از مرزها؛ <br />پیشران 
-                نوآوری در تجهیزات متالورژی و پتروشیمی.{" "}
+              <Text fontSize="xl" fontWeight="400" color={"#ffff"}>
+                مهندسیِ تأمین، فراتر از مرزها؛ <br />
+                پیشران نوآوری در تجهیزات متالورژی و پتروشیمی.
               </Text>
             </Box>
           </SimpleGrid>
 
           <Button
-            size="lg"
             bg="blue.600"
             color="white"
             w="fit-content"
+            _hover={{ bg: "blue.500" }}
             onClick={() => scrollToSection("products")}
           >
             مشاهده محصولات
           </Button>
         </Flex>
       </Container>
-
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        ::-webkit-scrollbar { width: 0px; background: transparent; }
-      `,
-        }}
-      />
     </Box>
   );
 }

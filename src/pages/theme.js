@@ -1,8 +1,10 @@
 import { extendTheme } from "@chakra-ui/react";
+import { text } from "framer-motion/client";
 
 const theme = extendTheme({
   fonts: {
     heading: `'Vazirmatn', sans-serif`,
+    text: `'Vazirmatn', sans-serif`,
     body: `'Vazirmatn', sans-serif`,
   },
   styles: {

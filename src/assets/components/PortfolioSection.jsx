@@ -216,7 +216,7 @@ export default function IndustrialPortfolio() {
         position="absolute"
         top="-10%"
         left="-5%"
-        color="blue.900"
+        color="blue.600"
         opacity="0.1"
         style={{ rotate: rotateRight }}
       >
@@ -227,7 +227,7 @@ export default function IndustrialPortfolio() {
         position="absolute"
         bottom="-10%"
         right="-5%"
-        color="blue.800"
+        color="blue.700"
         opacity="0.1"
         style={{ rotate: rotateLeft }}
       >

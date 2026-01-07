@@ -8,19 +8,19 @@ import {
   Button,
   Collapse,
   useDisclosure,
-  Text,
   Image,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
 
-const MotionBox = motion.create(Box);
+const MotionBox = motion(Box);
 
 const navLinks = [
   { href: "#about", label: "درباره ما" },
   { href: "#products", label: "محصولات" },
   { href: "#portfolio", label: "سوابق" },
+  { href: "#services", label: "خدمات ما" },
   { href: "#contact", label: "ارتباط با ما" },
 ];
 
@@ -34,23 +34,27 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* ===== Theme-aware values ===== */
   const bgGlass = useColorModeValue(
-    "rgba(255,255,255,0.15)",
-    "rgba(0,0,0,0.25)"
+    "rgba(255,255,255,0.75)",
+    "rgba(0,0,0,0.35)"
   );
-  const shadowGlass = "0 8px 25px rgba(0,0,0,0.2)";
+
+  const linkColor = useColorModeValue("blue.600" , "gray.800", "whiteAlpha.900");
+  const linkHoverColor = useColorModeValue("blue.600", "cyan.400");
+
+  const shadowGlass = "0 8px 25px rgba(0,0,0,0.15)";
 
   return (
     <Box as="header" position="fixed" top={0} left={0} right={0} zIndex={50}>
       <MotionBox
         initial={{ y: -120 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
         bg={isScrolled ? bgGlass : "transparent"}
         boxShadow={isScrolled ? shadowGlass : "none"}
-        backdropFilter={isScrolled ? "blur(15px) saturate(180%)" : "none"}
+        backdropFilter={isScrolled ? "blur(14px) saturate(180%)" : "none"}
         borderBottom={isScrolled ? "1px solid rgba(255,255,255,0.2)" : "none"}
-        transition="all 0.4s"
       >
         <Flex
           maxW="7xl"
@@ -62,31 +66,14 @@ export default function Navbar() {
         >
           {/* Logo */}
           <HStack spacing={3}>
-            <Box
-              p={2}
-              rounded="full"
-              transition="all 0.3s"
-              // _hover={{
-              //   transform: "rotate(-10deg) scale(1.15)",
-              //   boxShadow: "0 10px 25px rgba(59,130,246,0.5)",
-              // }}
-            >
+            <Box p={2} rounded="full">
               <Image
                 src="/لوگو.png"
                 alt="لوگو تجارت پرگاس آینده"
-                boxSize="50px"
+                boxSize="48px"
                 objectFit="cover"
               />
             </Box>
-            {/* <Text
-              fontSize="xl"
-              fontWeight="black"
-              bgGradient="linear(to-r, #ffff, blue.400)"
-              bgClip="text"
-              transition="all 0.3s"
-            >
-              تجارت پرگاس آینده
-            </Text> */}
           </HStack>
 
           {/* Desktop Menu */}
@@ -96,7 +83,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 fontWeight="semibold"
-                color="whiteAlpha.900"
+                color={"blue.600"}
                 position="relative"
                 _after={{
                   content: '""',
@@ -110,7 +97,7 @@ export default function Navbar() {
                   borderRadius: "full",
                 }}
                 _hover={{
-                  color: "cyan.400",
+                  color: linkHoverColor,
                   _after: { width: "100%" },
                 }}
               >
@@ -126,12 +113,11 @@ export default function Navbar() {
               fontWeight="bold"
               rounded="full"
               px={6}
-              py={2}
               _hover={{
-                transform: "scale(1.1) rotate(-1deg)",
-                boxShadow: "0 8px 25px rgba(59,130,246,0.6)",
+                transform: "scale(1.05)",
+                boxShadow: "lg",
               }}
-              transition="all 0.3s"
+              transition="all 0.25s"
             >
               تماس با ما
             </Button>
@@ -144,8 +130,8 @@ export default function Navbar() {
             display={{ md: "none" }}
             onClick={onToggle}
             variant="ghost"
-            color="white"
-            _hover={{ bg: "whiteAlpha.200" }}
+            color={linkColor}
+           
           />
         </Flex>
 
@@ -157,8 +143,10 @@ export default function Navbar() {
             py={4}
             display={{ md: "none" }}
             shadow={shadowGlass}
-            backdropFilter="blur(15px) saturate(180%)"
+            backdropFilter="blur(14px) saturate(180%)"
             borderRadius="xl"
+            mx={4}
+            mb={4}
           >
             <Flex direction="column" gap={4}>
               {navLinks.map((link) => (
@@ -168,9 +156,8 @@ export default function Navbar() {
                   onClick={onToggle}
                   fontSize="lg"
                   fontWeight="medium"
-                  color="whiteAlpha.900"
-                  _hover={{ color: "cyan.400" }}
-                  transition="color 0.2s"
+                  color={linkColor}
+                  _hover={{ color: linkHoverColor }}
                 >
                   {link.label}
                 </Link>
@@ -185,11 +172,7 @@ export default function Navbar() {
                 fontWeight="bold"
                 rounded="full"
                 mt={2}
-                _hover={{
-                  // transform: "scale(1.1) rotate(-1deg)",
-                  boxShadow: "0 8px 12px rgba(26, 42, 67, 0.6)",
-                }}
-                transition="all 0.3s"
+                _hover={{ boxShadow: "lg" }}
               >
                 تماس با ما
               </Button>
