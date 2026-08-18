@@ -147,9 +147,7 @@ export default function ContactImagePanel() {
           fontWeight={800}
           lineHeight="1.4"
         >
-          همراه شما در
-          <br />
-          پروژه‌های صنعتی
+          همراه شما در پروژه‌های صنعتی
         </Heading>
 
         <Text color={MUTED} fontSize="sm" maxW="450px" lineHeight="2">
