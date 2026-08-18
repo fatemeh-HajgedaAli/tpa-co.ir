@@ -1,4 +1,4 @@
-import Tir from "../../image/شمش2.jpg";
+import Tir from "../../image/shems2.jpg";
 import navdani from "../../image/navdan.jpg";
 import milgerd from "../../image/milgerd.jpg";
 
