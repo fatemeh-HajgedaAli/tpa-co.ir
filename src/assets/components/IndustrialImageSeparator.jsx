@@ -43,49 +43,6 @@ export default function IndustrialImageSeparator() {
         opacity="0.85"
       />
 
-      {/* CONTENT
-      <Container
-        maxW="7xl"
-        h="full"
-        position="relative"
-        zIndex={2}
-        display="flex"
-        alignItems="center"
-        dir="rtl"
-      >
-        <VStack align="start" spacing={4} maxW="2xl" p={8} color="white">
-          <MotionBox
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-          >
-            <HStack mb={4}>
-              <Box w="60px" h="2px" bg="blue.500" />
-              <Text
-                fontSize="sm"
-                fontWeight="900"
-                letterSpacing="3px"
-                color="blue.400"
-              >
-                TPA COMPANY
-              </Text>
-            </HStack>
-
-            <Heading size="2xl" mb={4} fontWeight="900" lineHeight="1.2">
-              دقت مهندسی در{" "}
-              <Box as="span" color="blue.500">
-                خدمات صنعتی
-              </Box>
-            </Heading>
-
-            <Text color="gray.300" fontSize="lg" lineHeight="tall">
-              ما با ترکیب تجربه ۲۰ ساله و تکنولوژی‌های روز دنیا، پروژه‌های ذوب و
-              ریخته‌گری را از مشاوره تا بهره‌برداری کامل هدایت می‌کنیم.
-            </Text>
-          </MotionBox>
-        </VStack>
-      </Container> */}
 
       {/* EXPERIENCE BADGE */}
       <Box
