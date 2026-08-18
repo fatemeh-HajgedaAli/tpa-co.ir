@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { ArrowUpLeft, Factory } from "lucide-react";
-
+import contactUs from "../../image/contactUs.jpg";
 const INK = "#edeee8";
 const MUTED = "#8a94a3";
 const BLUE = "#4fb3c7";
@@ -34,7 +34,7 @@ export default function ContactImagePanel() {
       role="group"
     >
       <Image
-        src="/src/assets/image/heroImage3.jpg"
+        src={contactUs}
         alt="تجهیزات و صنایع فولاد"
         position="absolute"
         inset="0"
@@ -115,45 +115,6 @@ export default function ContactImagePanel() {
           ۳۲.۶۵۴۶° N, ۵۱.۶۶۸۰° E
         </Text>
       </HStack>
-
-      {/* Content */}
-      <VStack
-        position="absolute"
-        bottom={{ base: 8, md: 12 }}
-        insetInlineStart={{ base: 6, md: 10 }}
-        insetInlineEnd={{ base: 6, md: 10 }}
-        align="start"
-        spacing={4}
-      >
-        <HStack color={BLUE} spacing={3}>
-          <Icon as={Factory} boxSize={5} />
-
-          <Text
-            fontFamily={MONO}
-            fontSize="11px"
-            letterSpacing="1.5px"
-            fontWeight={700}
-          >
-            راهکارهای صنعتی
-          </Text>
-        </HStack>
-
-        <Heading
-          color={INK}
-          fontSize={{
-            base: "2xl",
-            md: "4xl",
-          }}
-          fontWeight={800}
-          lineHeight="1.4"
-        >
-          همراه شما در پروژه‌های صنعتی
-        </Heading>
-
-        <Text color={MUTED} fontSize="sm" maxW="450px" lineHeight="2">
-          تخصص، تجربه و تعهد در اجرای پروژه‌های صنعتی و تجهیزات فولاد.
-        </Text>
-      </VStack>
     </Box>
   );
 }
