@@ -1,4 +1,4 @@
-import productImg1 from "../../image/آهن.jpg";
+import productImg1 from "../../image/iron.jpg";
 import productImg2 from "../../image/کک.jpg";
 import productImg3 from "../../image/فرو منگز.jpg";
 import productImg4 from "../../image/فرو سیلیس.jpg";
