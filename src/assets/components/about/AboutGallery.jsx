@@ -87,10 +87,8 @@ export default function AboutGallery() {
             fontWeight={800}
             lineHeight="1.4"
           >
-             تجربه،    تخصص،
-       
+            تجربه، تخصص،
             <Box as="span" color={BLUE}>
-        
               اعتماد
             </Box>
           </Heading>

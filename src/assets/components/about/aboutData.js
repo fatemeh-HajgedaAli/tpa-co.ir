@@ -1,6 +1,6 @@
 import { Award, Users, Factory, Globe2 } from "lucide-react";
 
-import aboutImage1 from "../../image/aboutSection4.jpg";
+import aboutImage1 from "../../image/about.jpg";
 import aboutImage2 from "../../image/AboutSection.jpg";
 import aboutImage3 from "../../image/shemsh.jpg";
 import aboutImage4 from "../../image/HeroBg.jpg";

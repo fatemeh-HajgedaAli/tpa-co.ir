@@ -34,7 +34,7 @@ export default function ContactImagePanel() {
       role="group"
     >
       <Image
-        src="/src/assets/image/contactUs.jpg"
+        src="/src/assets/image/heroImage3.jpg"
         alt="تجهیزات و صنایع فولاد"
         position="absolute"
         inset="0"
