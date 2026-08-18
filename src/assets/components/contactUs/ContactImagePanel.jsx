@@ -34,7 +34,7 @@ export default function ContactImagePanel() {
       role="group"
     >
       <Image
-        src="/src/assets/image/contact-CtKG-8_J.jpg"
+        src="/src/assets/image/contactUs.jpg"
         alt="تجهیزات و صنایع فولاد"
         position="absolute"
         inset="0"

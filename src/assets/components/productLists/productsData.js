@@ -1,21 +1,21 @@
 import productImg1 from "../../image/iron.jpg";
-import productImg2 from "../../image/کک.jpg";
-import productImg3 from "../../image/فرو منگز.jpg";
-import productImg4 from "../../image/فرو سیلیس.jpg";
-import productImg5 from "../../image/سیلیکو.jpg";
-import productImg6 from "../../image/انواع خاک.jpg";
-import productImg7 from "../../image/نازل افشانک.jpg";
-import productImg8 from "../../image/شمش.jpg";
-import productImg9 from "../../image/بریکتهای.jpg";
-import productImg10 from "../../image/شلاکه.jpg";
-import productImg11 from "../../image/ترموکوپل.jpg";
-import productImg12 from "../../image/پودر ریخته گری.jpg";
-import productImg13 from "../../image/نازل تاندیش.jpg";
-import productImg14 from "../../image/سیستم اسلاید گیت.jpg";
-import productImg15 from "../../image/شیلنگ فری کربن.jpg";
-import productImg16 from "../../image/نوار ابریشمی نسوز.jpg";
-import productImg17 from "../../image/انواع سیم.jpg";
-import productImg18 from "../../image/دسته لنس اکسیژن.jpg";
+import productImg2 from "../../image/kak.jpg";
+import productImg3 from "../../image/fromangenez.jpg";
+import productImg4 from "../../image/frosilis.jpg";
+import productImg5 from "../../image/siliko.jpg";
+import productImg6 from "../../image/anvaeKhak.jpg";
+import productImg7 from "../../image/nazelAfshanak.jpg";
+import productImg8 from "../../image/shemsh1.jpg";
+import productImg9 from "../../image/berikets.jpg";
+import productImg10 from "../../image/shalake.jpg";
+import productImg11 from "../../image/termokobl.jpg";
+import productImg12 from "../../image/poodrRikhteh.jpg";
+import productImg13 from "../../image/nazekTandish.jpg";
+import productImg14 from "../../image/slidegate.jpg";
+import productImg15 from "../../image/fricarbon.jpg";
+import productImg16 from "../../image/navarAbrishami.jpg";
+import productImg17 from "../../image/sim.jpg";
+import productImg18 from "../../image/dastehlans.jpg";
 
 export const products = [
   {
